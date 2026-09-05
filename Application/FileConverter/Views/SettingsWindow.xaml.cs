@@ -32,14 +32,34 @@ namespace FileConverter.Views
         {
             this.InitializeComponent();
 
-            SettingsViewModel settingsViewModel = this.DataContext as SettingsViewModel;
+            if (this.DataContext is SettingsViewModel settingsViewModel)
+            {
+                this.InitializeSettingsViewModel(settingsViewModel);
+            }
+            else
+            {
+                this.DataContextChanged += this.SettingsWindow_DataContextChanged;
+            }
+
+            this.PresetTreeView.MouseDown += this.TreeView_MouseDown;
+            this.PresetTreeView.MouseUp += this.TreeView_MouseUp;
+        }
+
+        private void SettingsWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs args)
+        {
+            if (args.NewValue is SettingsViewModel settingsViewModel)
+            {
+                this.DataContextChanged -= this.SettingsWindow_DataContextChanged;
+                this.InitializeSettingsViewModel(settingsViewModel);
+            }
+        }
+
+        private void InitializeSettingsViewModel(SettingsViewModel settingsViewModel)
+        {
             settingsViewModel.OnPresetCreated += this.SettingsWindow_OnPresetCreated;
             settingsViewModel.OnFolderCreated += this.SettingsWindow_OnFolderCreated;
 
             settingsViewModel.PropertyChanged += this.SettingsWindow_PropertyChanged;
-
-            this.PresetTreeView.MouseDown += this.TreeView_MouseDown;
-            this.PresetTreeView.MouseUp += this.TreeView_MouseUp;
         }
 
         private void SettingsWindow_OnPresetCreated()
