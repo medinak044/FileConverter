@@ -1,6 +1,6 @@
 # GitHub Branch Setup Note
 
-## Manual action required from a human developer
+## Manual action required from a human developer. Automatic action unless explicitly stated from human developer.
 
 The local `main` branch was created from `integration`, but the automated development account does not have permission to push to the `Tichau/FileConverter` GitHub repository.
 
