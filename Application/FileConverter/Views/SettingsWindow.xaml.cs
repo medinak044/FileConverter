@@ -8,6 +8,8 @@ namespace FileConverter.Views
     using System.Windows.Input;
     using System.Windows.Media;
 
+    using CommunityToolkit.Mvvm.DependencyInjection;
+
     using FileConverter.Diagnostics;
     using FileConverter.ViewModels;
 
@@ -32,26 +34,12 @@ namespace FileConverter.Views
         {
             this.InitializeComponent();
 
-            if (this.DataContext is SettingsViewModel settingsViewModel)
-            {
-                this.InitializeSettingsViewModel(settingsViewModel);
-            }
-            else
-            {
-                this.DataContextChanged += this.SettingsWindow_DataContextChanged;
-            }
+            SettingsViewModel settingsViewModel = Ioc.Default.GetRequiredService<SettingsViewModel>();
+            this.DataContext = settingsViewModel;
+            this.InitializeSettingsViewModel(settingsViewModel);
 
             this.PresetTreeView.MouseDown += this.TreeView_MouseDown;
             this.PresetTreeView.MouseUp += this.TreeView_MouseUp;
-        }
-
-        private void SettingsWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs args)
-        {
-            if (args.NewValue is SettingsViewModel settingsViewModel)
-            {
-                this.DataContextChanged -= this.SettingsWindow_DataContextChanged;
-                this.InitializeSettingsViewModel(settingsViewModel);
-            }
         }
 
         private void InitializeSettingsViewModel(SettingsViewModel settingsViewModel)

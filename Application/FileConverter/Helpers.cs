@@ -297,7 +297,8 @@ namespace FileConverter
             RegistryKey winwordKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(registryKeyPattern, false);
             if (winwordKey != null)
             {
-                string winwordPath = winwordKey.GetValue(string.Empty).ToString();
+                object winwordValue = winwordKey.GetValue(string.Empty);
+                string winwordPath = winwordValue == null ? null : winwordValue.ToString();
                 if (!string.IsNullOrEmpty(winwordPath))
                 {
                     return true;
@@ -308,7 +309,8 @@ namespace FileConverter
             winwordKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(registryKeyPattern, false);
             if (winwordKey != null)
             {
-                string winwordPath = winwordKey.GetValue(string.Empty).ToString();
+                object winwordValue = winwordKey.GetValue(string.Empty);
+                string winwordPath = winwordValue == null ? null : winwordValue.ToString();
                 if (!string.IsNullOrEmpty(winwordPath))
                 {
                     return true;

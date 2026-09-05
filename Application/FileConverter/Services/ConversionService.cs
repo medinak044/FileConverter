@@ -17,7 +17,7 @@ namespace FileConverter.Services
     {
         private readonly List<ConversionJob> conversionJobs = new List<ConversionJob>();
 
-        private readonly int numberOfConversionThread = 1;
+        private int numberOfConversionThread = 1;
 
         private ISettingsService settingsService;
 
@@ -64,6 +64,12 @@ namespace FileConverter.Services
 
         private void ConvertFiles()
         {
+            this.numberOfConversionThread = this.settingsService.Settings.MaximumNumberOfSimultaneousConversions;
+            if (this.numberOfConversionThread <= 0)
+            {
+                this.numberOfConversionThread = System.Math.Max(1, Environment.ProcessorCount / 2);
+            }
+
             // Prepare conversions.
             for (int index = 0; index < this.ConversionJobs.Count; index++)
             {
