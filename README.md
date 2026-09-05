@@ -29,12 +29,12 @@ If you encounter any problem with File Converter, you can:
 
 For File Converter and its explorer extension:
 
-* Visual Studio 2022
+* Visual Studio 2022+
 
 For the installer:
 
 * [Wix 5](http://wixtoolset.org/) (will be installed by nuget)
-  * [Community Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=FireGiant.FireGiantHeatWaveDev17)
+  * [Community Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=FireGiant.FireGiantHeatWaveDev17) (required for the Installer project; supports Visual Studio 2022+)
 * [Windows SDK Signing Tools for Desktop Apps](https://developer.microsoft.com/fr-fr/windows/downloads/windows-10-sdk)
 
 ## Thanks
