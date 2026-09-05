@@ -28,6 +28,7 @@ When releasing a new version, update all of the following locations:
 
 6. `CHANGELOG.md`
    - Add a new release section for the new version and document the changes.
+	 - Always update this file together with the application and installer version references.
    - Do not rewrite older historical release sections.
 
 7. Search the repository for the previous version number before building.

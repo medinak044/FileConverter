@@ -1,5 +1,12 @@
 # Change Log
 
+## Version 2.3
+
+- Fixes: Settings could close the application when opened from the main window.
+- Fixes: Settings initialization could fail on systems with incomplete Microsoft Office registry entries.
+- Fixes: Conversion presets, supported languages, and hardware acceleration modes could appear empty in Settings.
+- Fixes: Changes to the maximum number of simultaneous conversions now apply when the next conversion run starts.
+
 ## Version 2.2
 
 - New: AMD AMF hardware acceleration option for MP4/MKV H.264 conversions (thanks to bharatvansh).
